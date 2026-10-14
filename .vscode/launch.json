@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug on TM4C129EXL",
+      "type": "cortex-debug",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "executable": "${workspaceFolder}/.pio/build/tm4c129exl_debug/firmware.elf",
+      "servertype": "openocd",
+      "serverpath": "${workspaceFolder}/.pio-core/packages/tool-openocd/bin/openocd",
+      "configFiles": ["board/ti_ek-tm4c1294xl.cfg"],
+      "gdbPath": "${workspaceFolder}/.pio-core/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gdb",
+      "svdFile": "${workspaceFolder}/.pio-core/platforms/titiva/misc/svd/TM4C1294NCPDT.svd",
+      "runToEntryPoint": "main",
+      "preLaunchTask": "PIO: Prepare debug"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PIO: Build",
+      "type": "process",
+      "command": "pio",
+      "args": ["run", "-e", "tm4c129exl"],
+      "options": {"cwd": "${workspaceFolder}", "env": {"PLATFORMIO_CORE_DIR": "${workspaceFolder}/.pio-core"}},
+      "group": {"kind": "build", "isDefault": true},
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "PIO: Run on board",
+      "type": "process",
+      "command": "pio",
+      "args": ["run", "-e", "tm4c129exl", "-t", "upload"],
+      "options": {"cwd": "${workspaceFolder}", "env": {"PLATFORMIO_CORE_DIR": "${workspaceFolder}/.pio-core"}},
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "PIO: Prepare debug",
+      "type": "process",
+      "command": "pio",
+      "args": ["run", "-e", "tm4c129exl_debug", "-t", "upload"],
+      "options": {"cwd": "${workspaceFolder}", "env": {"PLATFORMIO_CORE_DIR": "${workspaceFolder}/.pio-core"}},
+      "problemMatcher": "$gcc"
+    }
+  ]
+}

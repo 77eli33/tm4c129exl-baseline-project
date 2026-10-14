@@ -1,0 +1,19 @@
+# PlatformIO downloads and build output
+.pio/
+.pio-core/
+.pioenvs/
+.piolibdeps/
+
+# Local/manual build output
+build/
+
+# OS and editor state
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/.browse.VC.db*
+.vscode/ipch/
+
+# Keep the shared .vscode launch, task, extension, and C/C++ configs tracked.
