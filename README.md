@@ -1,6 +1,6 @@
 # TM4C129EXL project baseline
 
-A small bare-metal EK-TM4C129EXL project for copying into future work. It blinks user LED D2 on PN0. The firmware starts at the MCU's reset clock and does not configure the PLL.
+A small bare-metal EK-TM4C129EXL project for copying into future work. It blinks user LED D2 on PN0. The firmware starts at the MCU's reset clock and does not configure the PLL. The Projects contains Toolchain setup and VSCode configuration as well as instructions for AI-Agents and Chatbots, tuning them to support learning progress.
 
 ## Download and set up
 
@@ -63,6 +63,4 @@ Connect from another terminal:
 (gdb) continue
 ```
 
-## Verified on the connected board
 
-PlatformIO release and debug builds succeeded, and the debug upload reported `Verified OK`. In VS Code, **Debug on TM4C129EXL** appeared in Run and Debug; F5 launched it, stopped at `main`, and F10 advanced to the next source line. The task picker showed all three project tasks. The C/C++ Problems view showed zero diagnostics after the ARM editor configuration was added. OpenOCD prints an `SRST error` with this board's probe, but programming, verification, and source debugging completed successfully.
