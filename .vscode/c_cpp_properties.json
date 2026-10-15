@@ -6,7 +6,7 @@
       "compilerPath": "${workspaceFolder}/.pio-core/packages/toolchain-gccarmnoneeabi/bin/arm-none-eabi-gcc",
       "intelliSenseMode": "gcc-arm",
       "cStandard": "c11",
-      "includePath": ["${workspaceFolder}/src"]
+      "includePath": ["${workspaceFolder}/src", "${workspaceFolder}"]
     }
   ]
 }

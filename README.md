@@ -19,6 +19,12 @@ The first build or debug launch downloads the pinned TI TIVA platform, GNU Arm c
 
 The `platformio.ini` uses PlatformIO's compatible TM4C129 LaunchPad board definition and sets the actual EXL MCU to TM4C129ENCPDT. The `.vscode` configurations use `${workspaceFolder}` paths, so they work after copying the project folder. `.pio`, `.pio-core`, and `build` contain generated files and are excluded by `.gitignore`.
 
+## Sharing application code with CCS
+
+Keep TI's `inc/` and `driverlib/` folder names. The project root is on the compiler and VS Code include paths, so both `#include "inc/hw_memmap.h"` (direct register access) and `#include "driverlib/gpio.h"` (DriverLib) work. PlatformIO links `driverlib/gcc/libdriver.a`, the GNU Arm version of the TivaWare DriverLib archive. The `driverlib/ccs/` archive is for CCS, not this toolchain. Keep the matching TI headers and archive together.
+
+To move a student application, replace the application files in `src/` and build. Remove this template's `src/main.c` if the copied files already define `main()` or their own reset/vector startup. If the application needs its own startup or memory layout, use the corresponding startup and linker files for each toolchain; `linker.ld` here is only this template's layout. Check the board pin assignments, clock setup, interrupt handlers, and any extra TivaWare libraries used by that application. A copied `src/` folder alone does not supply those project settings or dependencies. This template's blinky demonstrates DriverLib calls; applications may also use direct register access.
+
 ## Quick start in VS Code
 
 | Goal | Action | Result |

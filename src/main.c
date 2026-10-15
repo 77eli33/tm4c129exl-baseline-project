@@ -1,12 +1,9 @@
-typedef unsigned int uint32_t;
-typedef unsigned int uintptr_t;
+#include <stdint.h>
+#include <stdbool.h>
 
-#define REG32(addr) (*(volatile uint32_t *)(addr))
-#define SYSCTL_RCGCGPIO REG32(0x400FE608u)
-#define SYSCTL_PRGPIO   REG32(0x400FEA08u)
-#define GPIO_PORTN_DATA REG32(0x400643FCu)
-#define GPIO_PORTN_DIR  REG32(0x40064400u)
-#define GPIO_PORTN_DEN  REG32(0x4006451Cu)
+#include "inc/hw_memmap.h"
+#include "driverlib/gpio.h"
+#include "driverlib/sysctl.h"
 
 extern uint32_t _estack, _sidata, _sdata, _edata, _sbss, _ebss;
 int main(void);
@@ -35,12 +32,13 @@ static __attribute__((noinline)) void delay(void) {
 }
 
 int main(void) {
-    SYSCTL_RCGCGPIO |= (1u << 12); // Port N clock
-    while ((SYSCTL_PRGPIO & (1u << 12)) == 0) {}
-    GPIO_PORTN_DIR |= 1u;
-    GPIO_PORTN_DEN |= 1u;
+    SysCtlPeripheralEnable(SYSCTL_PERIPH_GPION);
+    while (!SysCtlPeripheralReady(SYSCTL_PERIPH_GPION)) {}
+    GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_0);
     while (1) {
-        GPIO_PORTN_DATA ^= 1u; // D2, PN0
+        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, GPIO_PIN_0); // D2, PN0
+        delay();
+        GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0);
         delay();
     }
 }
